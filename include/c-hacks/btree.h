@@ -17,4 +17,4 @@ extern int btree_find(const struct btree_node *n, const void *data,
 
 extern struct btree_node *btree_insert(struct btree_node *n, void *data);
 
-#endif				/* INC_chacks_btree_H */
+#endif
