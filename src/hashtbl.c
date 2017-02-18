@@ -43,6 +43,7 @@
 #include <stdint.h>		/* intptr_t */
 #endif
 #include <c-hacks/hashtbl.h>
+#include <c-hacks/hashtbl-funcs.h>
 
 #define UNUSED_PARAMETER(X) (void)(X)
 
@@ -85,20 +86,6 @@ static int roundup_to_next_power_of_2(int x)
 	while (n < x)
 		n <<= 1;
 	return n;
-}
-
-static INLINE unsigned int direct_hash(const void *k)
-{
-	/* Magic numbers from Java 1.4. */
-	unsigned int h = (unsigned int)(uintptr_t) k;
-
-	h ^= (h >> 20) ^ (h >> 12);
-	return h ^ (h >> 7) ^ (h >> 4);
-}
-
-static INLINE int direct_equals(const void *a, const void *b)
-{
-	return a == b;
 }
 
 static int is_power_of_2(int x)
@@ -292,8 +279,8 @@ struct hashtbl *hashtbl_create(int capacity, double max_load_factor,
 
 	malloc_fn = (malloc_fn != NULL) ? malloc_fn : malloc;
 	free_fn = (free_fn != NULL) ? free_fn : free;
-	hash_fn = (hash_fn != NULL) ? hash_fn : direct_hash;
-	equals_fn = (equals_fn != NULL) ? equals_fn : direct_equals;
+	hash_fn = (hash_fn != NULL) ? hash_fn : hashtbl_direct_hash;
+	equals_fn = (equals_fn != NULL) ? equals_fn : hashtbl_direct_equals;
 
 	if ((h = malloc_fn(sizeof(*h))) == NULL)
 		return NULL;

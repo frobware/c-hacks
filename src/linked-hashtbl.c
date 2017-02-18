@@ -46,7 +46,9 @@
 #if !defined(_MSC_VER)
 #include <stdint.h>		/* intptr_t */
 #endif
+
 #include <c-hacks/linked-hashtbl.h>
+#include <c-hacks/hashtbl-funcs.h>
 
 #define UNUSED_PARAMETER(X) (void)(X)
 
@@ -121,19 +123,6 @@ static INLINE void list_remove(struct l_hashtbl_list_head *node)
 static INLINE int resize_threshold(int capacity, double max_load_factor)
 {
 	return (int)(((double)capacity * max_load_factor) + 0.5);
-}
-
-static INLINE unsigned int direct_hash(const void *k)
-{
-	/* Magic numbers from Java 1.4. */
-	unsigned int h = (unsigned int)(uintptr_t) k;
-	h ^= (h >> 20) ^ (h >> 12);
-	return h ^ (h >> 7) ^ (h >> 4);
-}
-
-static INLINE int direct_equals(const void *a, const void *b)
-{
-	return a == b;
 }
 
 static int roundup_to_next_power_of_2(int x)
@@ -348,8 +337,8 @@ struct l_hashtbl *l_hashtbl_create(int capacity, double max_load_factor,
 
 	malloc_fn = (malloc_fn != NULL) ? malloc_fn : malloc;
 	free_fn = (free_fn != NULL) ? free_fn : free;
-	hash_fn = (hash_fn != NULL) ? hash_fn : direct_hash;
-	equals_fn = (equals_fn != NULL) ? equals_fn : direct_equals;
+	hash_fn = (hash_fn != NULL) ? hash_fn : hashtbl_direct_hash;
+	equals_fn = (equals_fn != NULL) ? equals_fn : hashtbl_direct_equals;
 	evictor_fn = (evictor_fn != NULL) ? evictor_fn : remove_eldest;
 
 	if ((h = malloc_fn(sizeof(*h))) == NULL)
