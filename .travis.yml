@@ -1,0 +1,22 @@
+language: c
+
+dist: trusty
+
+cache: ccache
+
+compiler:
+  - gcc
+
+addons:
+  apt:
+    packages:
+      - valgrind
+      - lcov
+
+script:
+  - make
+  - make test
+  - make NightlyCoverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
