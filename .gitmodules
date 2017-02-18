@@ -1,0 +1,3 @@
+[submodule "cutest"]
+	path = cutest
+	url = https://github.com/mity/cutest.git
