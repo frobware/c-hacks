@@ -1,5 +1,5 @@
 /* Copyright (c) 2017 <Andrew McDermott>
- * 
+ *
  * Source can be cloned from:
  *
  *     https://github.com/frobware/c-hacks

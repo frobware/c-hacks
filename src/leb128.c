@@ -1,5 +1,5 @@
 /* Copyright (c) 2017 <Andrew McDermott>
- * 
+ *
  * Source can be cloned from:
  *
  *     https://github.com/frobware/c-hacks
@@ -220,7 +220,7 @@ const unsigned char *x_leb128_decode_l(const void *buf, long *result)
 	long value = 0;
 	unsigned char *p = (unsigned char *)buf;
 	long byte;
-	
+
 	do {
 		byte = *p++;
 		value |= (byte & 0x7f) << shift;
