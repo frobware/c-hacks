@@ -2,7 +2,7 @@
  * 
  * Source can be cloned from:
  *
- *     https://github.com/frobware/hashtbl.git
+ *     https://github.com/frobware/c-hacks.git
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
