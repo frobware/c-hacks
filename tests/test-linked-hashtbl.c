@@ -407,9 +407,8 @@ static int test9(void)
 		v->v = i + test9_max;
 		CUT_ASSERT_EQUAL(0, l_hashtbl_insert(h, k, v));
 		CUT_ASSERT_EQUAL(i + 1, (int)l_hashtbl_count(h));
-		CUT_ASSERT_EQUAL(i + test9_max,
-				 ((struct test_val *)
-				  l_hashtbl_lookup(h, k))->v);
+		CUT_ASSERT_EQUAL(i + test9_max, ((struct test_val *)
+						 l_hashtbl_lookup(h, k))->v);
 	}
 
 	l_hashtbl_apply(h, test9_apply_fn1, &test9_max);

@@ -92,7 +92,8 @@ size_t x_leb128_encode_ul(void *buf, unsigned long value)
 			*p |= 0x80;
 		}
 		p++;
-	} while (value);
+	}
+	while (value);
 
 	return p - (unsigned char *)buf;
 }
@@ -116,7 +117,8 @@ size_t x_leb128_encode_ull(void *buf, unsigned long long value)
 			*p |= 0x80;
 		}
 		p++;
-	} while (value);
+	}
+	while (value);
 
 	return p - (unsigned char *)buf;
 }
@@ -140,7 +142,7 @@ size_t x_leb128_encode_l(void *buf, long value)
 		 * not 0x80. If (value == 0) && sign bit of byte is
 		 * clear OR (value == -1) && sign bit of byte is set,
 		 * then we're done. */
-		if ((value ==  0 && ((byte & 0x40) != 0x40)) ||
+		if ((value == 0 && ((byte & 0x40) != 0x40)) ||
 		    (value == -1 && ((byte & 0x40) == 0x40))) {
 			more = 0;
 		} else {
@@ -164,7 +166,7 @@ size_t x_leb128_encode_ll(void *buf, long long value)
 		 * not 0x80. If (value == 0) && sign bit of byte is
 		 * clear OR (value == -1) && sign bit of byte is set,
 		 * then we're done. */
-		if ((value ==  0 && ((byte & 0x40) != 0x40)) ||
+		if ((value == 0 && ((byte & 0x40) != 0x40)) ||
 		    (value == -1 && ((byte & 0x40) == 0x40))) {
 			more = 0;
 		} else {
@@ -195,7 +197,8 @@ const unsigned char *x_leb128_decode_ul(const void *buf, unsigned long *result)
 	return p;
 }
 
-const unsigned char *x_leb128_decode_ull(const void *buf, unsigned long long *result)
+const unsigned char *x_leb128_decode_ull(const void *buf,
+					 unsigned long long *result)
 {
 	int shift = 0;
 	unsigned long long value = 0;
@@ -225,10 +228,11 @@ const unsigned char *x_leb128_decode_l(const void *buf, long *result)
 		byte = *p++;
 		value |= (byte & 0x7f) << shift;
 		shift += 7;
-	} while ((byte & 0x80) != 0);
+	}
+	while ((byte & 0x80) != 0);
 
 	if ((shift < (sizeof *result * 8)) && (byte & 0x40)) {
-		value |= -(1L << shift); /* sign extend */
+		value |= -(1L << shift);	/* sign extend */
 	}
 
 	*result = value;
@@ -246,10 +250,11 @@ const unsigned char *x_leb128_decode_ll(const void *buf, long long *result)
 		byte = *p++;
 		value |= (byte & 0x7f) << shift;
 		shift += 7;
-	} while ((byte & 0x80) != 0);
+	}
+	while ((byte & 0x80) != 0);
 
 	if ((shift < (sizeof *result * 8)) && (byte & 0x40))
-		value |= -(1LL << shift); /* sign extend */
+		value |= -(1LL << shift);	/* sign extend */
 
 	*result = value;
 
