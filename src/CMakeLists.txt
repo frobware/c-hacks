@@ -1,5 +1,6 @@
 set(SRCS
   btree.c
+  leb128.c
   hashtbl.c
   linked-hashtbl.c)
 

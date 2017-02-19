@@ -43,7 +43,7 @@
  * 80 7f		-128		16256
  */
 
-#include "leb128.h"
+#include <c-hacks/leb128.h>
 #include <assert.h>
 
 /*
@@ -189,7 +189,7 @@ const unsigned char *x_leb128_decode_ull(const void *buf, unsigned long long *re
 
 const unsigned char *x_leb128_decode_l(const void *buf, long *result)
 {
-	int shift = 0;
+	size_t shift = 0;
 	long value = 0;
 	unsigned char *p = (unsigned char *)buf;
 	long byte;
@@ -210,7 +210,7 @@ const unsigned char *x_leb128_decode_l(const void *buf, long *result)
 
 const unsigned char *x_leb128_decode_ll(const void *buf, long long *result)
 {
-	int shift = 0;
+	size_t shift = 0;
 	long long value = 0;
 	long long byte;
 	unsigned char *p = (unsigned char *)buf;

@@ -1,11 +1,12 @@
 #include "CUnitTest.h"
-#include "leb128.h"
 #include <inttypes.h>
 #include <stdint.h>
 #include <string.h>
 #include <stddef.h>
 #include <limits.h>
 #include <assert.h>
+
+#include <c-hacks/leb128.h>
 
 /* Returns the actual LEB128 encoding count for X. */
 static size_t encoding_count_ull(unsigned long long value)
