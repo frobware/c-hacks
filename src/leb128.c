@@ -80,7 +80,7 @@
  *
  * Returns the number of bytes the encoding required.
  */
-size_t x_leb128_encode_ul(void *buf, unsigned long value)
+size_t leb128_encode_ul(void *buf, unsigned long value)
 {
 	unsigned char *p = buf;
 
@@ -105,7 +105,7 @@ size_t x_leb128_encode_ul(void *buf, unsigned long value)
  *
  * Returns the number of bytes the encoding required.
  */
-size_t x_leb128_encode_ull(void *buf, unsigned long long value)
+size_t leb128_encode_ull(void *buf, unsigned long long value)
 {
 	unsigned char *p = buf;
 
@@ -130,7 +130,7 @@ size_t x_leb128_encode_ull(void *buf, unsigned long long value)
  *
  * Returns the number of bytes the encoding required.
  */
-size_t x_leb128_encode_l(void *buf, long value)
+size_t leb128_encode_l(void *buf, long value)
 {
 	int more = 1;
 	unsigned char *p = buf;
@@ -154,7 +154,7 @@ size_t x_leb128_encode_l(void *buf, long value)
 	return p - (unsigned char *)buf;
 }
 
-size_t x_leb128_encode_ll(void *buf, long long value)
+size_t leb128_encode_ll(void *buf, long long value)
 {
 	int more = 1;
 	unsigned char *p = buf;
@@ -178,7 +178,7 @@ size_t x_leb128_encode_ll(void *buf, long long value)
 	return p - (unsigned char *)buf;
 }
 
-const unsigned char *x_leb128_decode_ul(const void *buf, unsigned long *result)
+const unsigned char *leb128_decode_ul(const void *buf, unsigned long *result)
 {
 	int shift = 0;
 	unsigned long value = 0;
@@ -197,7 +197,7 @@ const unsigned char *x_leb128_decode_ul(const void *buf, unsigned long *result)
 	return p;
 }
 
-const unsigned char *x_leb128_decode_ull(const void *buf,
+const unsigned char *leb128_decode_ull(const void *buf,
 					 unsigned long long *result)
 {
 	int shift = 0;
@@ -217,7 +217,7 @@ const unsigned char *x_leb128_decode_ull(const void *buf,
 	return p;
 }
 
-const unsigned char *x_leb128_decode_l(const void *buf, long *result)
+const unsigned char *leb128_decode_l(const void *buf, long *result)
 {
 	size_t shift = 0;
 	long value = 0;
@@ -239,7 +239,7 @@ const unsigned char *x_leb128_decode_l(const void *buf, long *result)
 	return p;
 }
 
-const unsigned char *x_leb128_decode_ll(const void *buf, long long *result)
+const unsigned char *leb128_decode_ll(const void *buf, long long *result)
 {
 	size_t shift = 0;
 	long long value = 0;
