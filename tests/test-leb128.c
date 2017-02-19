@@ -290,8 +290,8 @@ static int test8_leb128_decode_l(void)
 		long result;
 		reset_buffer(buf, sizeof buf);
 		expected_count = encoding_count_ll(val);
-		actual_count = x_leb128_encode_l(buf, val);
-		p = x_leb128_decode_l(buf, &result);
+		actual_count = leb128_encode_l(buf, val);
+		p = leb128_decode_l(buf, &result);
 		CUT_ASSERT_EQUAL(actual_count, p - buf);
 		CUT_ASSERT_EQUAL(expected_count, p - buf);
 		CUT_ASSERT_EQUAL(val, result);
@@ -299,8 +299,8 @@ static int test8_leb128_decode_l(void)
 #if 0
 		reset_buffer(buf, sizeof buf);
 		expected_count = encoding_count_ll(val + 1);
-		actual_count = x_leb128_encode_l(buf, val + 1);
-		p = x_leb128_decode_l(buf, &result);
+		actual_count = leb128_encode_l(buf, val + 1);
+		p = leb128_decode_l(buf, &result);
 		CUT_ASSERT_EQUAL(actual_count, p - buf);
 		CUT_ASSERT_EQUAL(expected_count, p - buf);
 		CUT_ASSERT_EQUAL(val + 1, result);
@@ -308,8 +308,8 @@ static int test8_leb128_decode_l(void)
 #if 0
 		reset_buffer(buf, sizeof buf);
 		expected_count = encoding_count_ll(val - 1);
-		actual_count = x_leb128_encode_l(buf, val - 1);
-		p = x_leb128_decode_l(buf, &result);
+		actual_count = leb128_encode_l(buf, val - 1);
+		p = leb128_decode_l(buf, &result);
 		CUT_ASSERT_EQUAL(actual_count, p - buf);
 		CUT_ASSERT_EQUAL(expected_count, p - buf);
 		CUT_ASSERT_EQUAL(val - 1, result);
