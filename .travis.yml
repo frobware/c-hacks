@@ -12,6 +12,7 @@ addons:
     packages:
       - valgrind
       - lcov
+      - -t backports swig3.0
 
 script:
   - make
