@@ -7,12 +7,15 @@ cache: ccache
 compiler:
   - gcc
 
+before_install:
+  - cat /etc/apt/sources.list
+
 addons:
   apt:
     packages:
       - valgrind
       - lcov
-      - swig3.0/trusty-backports
+      - swig/trusty-backports
 
 script:
   - make
