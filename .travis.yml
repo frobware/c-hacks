@@ -12,7 +12,7 @@ addons:
     packages:
       - valgrind
       - lcov
-      - -t trusty-backports swig3.0
+      - trusty-backports/swig3.0
 
 script:
   - make
