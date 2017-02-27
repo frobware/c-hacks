@@ -17,6 +17,7 @@ addons:
 script:
   - make
   - make test
+  - make NightlyMemCheck
   - make NightlyCoverage
 
 after_success:
